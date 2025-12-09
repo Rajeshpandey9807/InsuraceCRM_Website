@@ -318,6 +318,126 @@
       background: #fff;
     }
 
+    .contact-section {
+      position: relative;
+      padding-bottom: 5rem;
+    }
+
+    .contact-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 15% 20%, rgba(32, 229, 194, 0.2), transparent 55%);
+      z-index: -1;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-card,
+    .support-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 30px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-card .pill {
+      background: rgba(59, 91, 255, 0.12);
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card form {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.9rem;
+      color: rgba(13, 26, 58, 0.8);
+      font-weight: 600;
+    }
+
+    .contact-card input,
+    .contact-card textarea,
+    .contact-card select {
+      width: 100%;
+      padding: 0.95rem 1.1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(33, 92, 255, 0.2);
+      background: rgba(237, 241, 255, 0.8);
+      color: var(--text);
+      font-size: 0.95rem;
+      resize: none;
+    }
+
+    .contact-card textarea {
+      min-height: 120px;
+    }
+
+    .helper-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-top: 0.25rem;
+    }
+
+    .support-card {
+      background: linear-gradient(135deg, rgba(59, 91, 255, 0.15), rgba(32, 229, 194, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .support-card .contact-meta li span {
+      background: rgba(5, 10, 31, 0.35);
+    }
+
+    .support-card .support-badge {
+      margin-top: 0;
+    }
+
+    .support-card .support-chip {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .support-card .list li {
+      color: rgba(5, 10, 31, 0.85);
+    }
+
     .pill {
       display: inline-flex;
       align-items: center;
@@ -445,64 +565,6 @@
       font-size: 0.85rem;
     }
 
-    footer form {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .form-field label {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 600;
-    }
-
-    footer input,
-    footer textarea,
-    footer select {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: rgba(5, 10, 31, 0.45);
-      color: #fff;
-      font-size: 0.95rem;
-      resize: none;
-    }
-
-    footer textarea {
-      min-height: 120px;
-    }
-
-    .helper-text {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .checkbox {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.75);
-    }
-
-    .checkbox input {
-      width: auto;
-      margin-top: 0.25rem;
-    }
-
     footer .socials {
       display: flex;
       flex-wrap: wrap;
@@ -520,7 +582,7 @@
     }
 
     .support-links li {
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(5, 10, 31, 0.85);
     }
 
     .support-badge {
@@ -782,25 +844,11 @@
       </section>
     </main>
 
-    <footer id="contact">
-      <div class="footer-grid">
-        <div class="footer-card">
-          <div class="logo" style="color: #fff;">INSURECALL CRM</div>
-          <p>Purpose-built CRM for insurance calling teams. Secure, fast, and free.</p>
-          <ul class="contact-meta">
-            <li><span>24/7</span>Response in under 2 hours worldwide</li>
-            <li><span>99%</span>Customer satisfaction across tickets</li>
-            <li><span>AWS</span>Data residency & encryption at rest</li>
-          </ul>
-          <div class="socials">
-            <a href="https://linkedin.com" aria-label="LinkedIn">in</a>
-            <a href="https://twitter.com" aria-label="Twitter">X</a>
-            <a href="https://facebook.com" aria-label="Facebook">f</a>
-            <a href="https://youtube.com" aria-label="YouTube">▶</a>
-          </div>
-        </div>
-        <div>
-          <h3>Contact Sales</h3>
+    <section class="section contact-section" id="contact">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="pill">Talk to Sales</span>
+          <h2>Plan your Insurance Calling CRM rollout</h2>
           <p class="helper-text">Tell us about your calling desk—we’ll tailor a rollout plan within one business day.</p>
           <form>
             <div class="form-row">
@@ -856,20 +904,59 @@
             <p class="helper-text">By submitting you agree to receive follow-up emails from InsureCall CRM.</p>
           </form>
         </div>
-        <div>
-          <h3>Support</h3>
-          <span class="support-badge">Avg. response 8 min</span>
+        <div class="support-card">
+          <span class="pill">Always-on support</span>
+          <h3>Onboarding & success desk</h3>
           <p class="helper-text">Need answers fast? Choose the channel that fits your workflow.</p>
+          <span class="support-badge">Avg. response 8 min</span>
           <div>
             <span class="support-chip">Live Chat</span>
             <span class="support-chip">Knowledge Hub</span>
             <span class="support-chip">Status Page</span>
           </div>
+          <ul class="contact-meta">
+            <li><span>24/7</span>Response in under 2 hours worldwide</li>
+            <li><span>99%</span>Customer satisfaction across tickets</li>
+            <li><span>AWS</span>Data residency & encryption at rest</li>
+          </ul>
           <ul class="list support-links">
             <li>Email: support@insurecallcrm.com</li>
-            <li>Help Center & API docs</li>
-            <li>Live Chat (9am–9pm IST)</li>
             <li>Priority phone: +1 415 800 4010</li>
+            <li>Live Chat (9am–9pm IST)</li>
+            <li>Dedicated success manager for 20+ seats</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-card">
+          <div class="logo" style="color: #fff;">INSURECALL CRM</div>
+          <p>Purpose-built CRM for insurance calling teams. Secure, fast, and free.</p>
+          <div class="socials">
+            <a href="https://linkedin.com" aria-label="LinkedIn">in</a>
+            <a href="https://twitter.com" aria-label="Twitter">X</a>
+            <a href="https://facebook.com" aria-label="Facebook">f</a>
+            <a href="https://youtube.com" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div>
+          <h3>Product</h3>
+          <ul class="list">
+            <li><a href="#features">Core features</a></li>
+            <li><a href="#why">Why choose us</a></li>
+            <li><a href="#trust">Security & trust</a></li>
+            <li><a href="#audience">Who we serve</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Reach us</h3>
+          <ul class="list">
+            <li>support@insurecallcrm.com</li>
+            <li>sales@insurecallcrm.com</li>
+            <li>+1 415 800 4010</li>
+            <li>9am–9pm IST live helpdesk</li>
           </ul>
         </div>
       </div>
