@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Insurance Calling CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #edf1ff;
+      --card: rgba(255, 255, 255, 0.9);
+      --primary: #3b5bff;
+      --primary-dark: #2437c7;
+      --primary-light: #90a8ff;
+      --accent: #20e5c2;
+      --text: #0d1a3a;
+      --muted: #5c6580;
+      --border: rgba(147, 171, 255, 0.4);
+      --shadow-soft: 0 25px 70px -30px rgba(32, 48, 114, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(32, 229, 194, 0.18), transparent 45%),
+        radial-gradient(circle at 80% 0%, rgba(59, 91, 255, 0.15), transparent 40%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.35;
+    }
+
+    body::before {
+      top: 5%;
+      left: 5%;
+      background: var(--primary);
+    }
+
+    body::after {
+      bottom: 0;
+      right: 5%;
+      background: var(--accent);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 1rem;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(59, 91, 255, 0.16), rgba(32, 229, 194, 0.08));
+      z-index: -1;
+    }
+
+    nav {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 999px;
+      box-shadow: 0 15px 35px -25px rgba(13, 26, 58, 0.45);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .ghost-link {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      box-shadow: 0 25px 35px -25px rgba(32, 48, 114, 0.8);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      color: var(--primary);
+      border: 1px solid rgba(33, 92, 255, 0.2);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+      padding-bottom: 4rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 4vw, 3.8rem);
+      line-height: 1.1;
+      margin: 1rem 0;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 28px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(33, 92, 255, 0.15), transparent 55%);
+      pointer-events: none;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-card {
+      background: rgba(59, 91, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 35px 70px -35px rgba(13, 26, 58, 0.55);
+    }
+
+    .icon-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(33, 92, 255, 0.12);
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 0.4rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      flex-shrink: 0;
+    }
+
+    .why-section .card {
+      background: linear-gradient(135deg, rgba(59, 91, 255, 0.12), rgba(32, 229, 194, 0.12));
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: none;
+    }
+
+    .promotion {
+      background: linear-gradient(120deg, #2437c7, #3b5bff 55%, #20e5c2);
+      color: #fff;
+      border-radius: 34px;
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      align-items: center;
+      box-shadow: 0 55px 80px -45px rgba(12, 22, 54, 0.9);
+    }
+
+    .promotion ul li::before {
+      background: #fff;
+    }
+
+    .contact-section {
+      position: relative;
+      padding-bottom: 5rem;
+    }
+
+    .contact-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 15% 20%, rgba(32, 229, 194, 0.2), transparent 55%);
+      z-index: -1;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-card,
+    .support-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 30px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-card .pill {
+      background: rgba(59, 91, 255, 0.12);
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card form {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.9rem;
+      color: rgba(13, 26, 58, 0.8);
+      font-weight: 600;
+    }
+
+    .contact-card input,
+    .contact-card textarea,
+    .contact-card select {
+      width: 100%;
+      padding: 0.95rem 1.1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(33, 92, 255, 0.2);
+      background: rgba(237, 241, 255, 0.8);
+      color: var(--text);
+      font-size: 0.95rem;
+      resize: none;
+    }
+
+    .contact-card textarea {
+      min-height: 120px;
+    }
+
+    .helper-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-top: 0.25rem;
+    }
+
+    .support-card {
+      background: linear-gradient(135deg, rgba(59, 91, 255, 0.15), rgba(32, 229, 194, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .support-card .contact-meta li span {
+      background: rgba(5, 10, 31, 0.35);
+    }
+
+    .support-card .support-badge {
+      margin-top: 0;
+    }
+
+    .support-card .support-chip {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .support-card .list li {
+      color: rgba(5, 10, 31, 0.85);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .audience-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 18px;
+      padding: 1.4rem;
+      border: 1px solid rgba(59, 91, 255, 0.2);
+      font-weight: 600;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .trust {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonial {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 22px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+    }
+
+    .quote {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 1rem 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(33, 92, 255, 0.1);
+      color: var(--primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .faq-section {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 40px;
+      padding: 3rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(147, 171, 255, 0.35);
+      margin: 2rem auto 0;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    details {
+      background: rgba(237, 241, 255, 0.9);
+      border-radius: 18px;
+      padding: 1.25rem 1.4rem;
+      border: 1px solid rgba(33, 92, 255, 0.18);
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    details[open] {
+      border-color: var(--primary);
+      box-shadow: 0 25px 45px -35px rgba(18, 55, 166, 0.45);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-answer {
+      margin-top: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer {
+      background: #050a1f;
+      color: #eef2ff;
+      padding: 4rem 0 3rem;
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(32, 229, 194, 0.35), transparent 70%);
+      filter: blur(80px);
+      top: -120px;
+      right: -120px;
+      opacity: 0.5;
+    }
+
+    footer .footer-grid {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .footer-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 45px -35px rgba(0, 0, 0, 0.6);
+    }
+
+    .footer-card p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .contact-meta {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      display: grid;
+      gap: 0.75rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .contact-meta li {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .contact-meta li span {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    footer .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    footer .socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .support-links li {
+      color: rgba(5, 10, 31, 0.85);
+    }
+
+    .support-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 0.85rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .support-chip {
+      display: inline-flex;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 0 0.4rem 0.5rem 0;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    footer .small {
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .promotion {
+        padding: 2rem;
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-card,
+    .promotion,
+    .testimonial {
+      animation: float 8s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav>
+        <div class="logo">INSURECALL CRM</div>
+        <div class="nav-actions">
+          <a class="ghost-link" href="#features">Features</a>
+          <a class="ghost-link" href="#why">Why Us</a>
+          <a class="ghost-link" href="#contact">Contact</a>
+          <a class="btn btn-secondary" href="#demo">Start Free</a>
+        </div>
+      </nav>
+
+      <section class="section hero" id="demo">
+        <div>
+          <p class="eyebrow">insurance calling crm</p>
+          <h1>Smart Insurance Calling CRM – Call More. Close Faster. Grow Smarter.</h1>
+          <p>
+            A free, powerful CRM designed specially for insurance calling teams to manage leads, follow-ups,
+            and conversions easily. Equip agents, call centers, and sales desks with everything needed to
+            stay on script, in-sync, and ahead of daily targets.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Start Free</a>
+            <a class="btn btn-secondary" href="#contact">Book a Demo</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <span class="pill">Realtime productivity snapshot</span>
+          <h3>Turn every call list into closed policies.</h3>
+          <p>Auto-assign leads, nudge follow-ups, and surface conversion-ready prospects.</p>
+          <div class="stats">
+            <div class="stat-card">
+              <strong>+45%</strong>
+              Higher daily connect rates
+            </div>
+            <div class="stat-card">
+              <strong>3x</strong>
+              More conversions from smart follow-ups
+            </div>
+            <div class="stat-card">
+              <strong>0</strong>
+              Setup fees & hidden costs
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="section" id="features">
+        <h2>Core Features Built for Calling Teams</h2>
+        <p class="section-subtitle">
+          Everything you need to capture, qualify, and convert insurance leads with confidence.
+          Move faster with workflow-ready tools crafted for agents and sales floors.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <div class="icon-circle">LM</div>
+            <h3>Lead Management</h3>
+            <p>Single & bulk upload with deduping, notes, and instant availability.</p>
+          </article>
+          <article class="card">
+            <div class="icon-circle">AA</div>
+            <h3>Auto Assignment</h3>
+            <p>Distribute leads automatically to the right agent batch or queue.</p>
+          </article>
+          <article class="card">
+            <div class="icon-circle">SF</div>
+            <h3>Smart Follow-Ups</h3>
+            <p>Scheduling assistant with reminders, snooze, and outcome logging.</p>
+          </article>
+          <article class="card">
+            <div class="icon-circle">CT</div>
+            <h3>Call Tracking</h3>
+            <p>Complete call history, recordings, notes, and stage transitions.</p>
+          </article>
+          <article class="card">
+            <div class="icon-circle">DR</div>
+            <h3>Daily Reminders</h3>
+            <p>Unified dashboard for callbacks, renewals, and expiring policies.</p>
+          </article>
+          <article class="card">
+            <div class="icon-circle">PS</div>
+            <h3>Policy Status</h3>
+            <p>Track Interested / Not Interested / Converted outcomes in real time.</p>
+          </article>
+          <article class="card">
+            <div class="icon-circle">TR</div>
+            <h3>Team Reports</h3>
+            <p>Monitor effort, talk time, closures, and conversion funnels.</p>
+          </article>
+          <article class="card">
+            <div class="icon-circle">SA</div>
+            <h3>Secure Access</h3>
+            <p>Role-based controls for admins, managers, and on-floor agents.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section why-section" id="why">
+        <h2>Why Insurance Teams Choose Our CRM</h2>
+        <p class="section-subtitle">
+          Built with inputs from insurance BPOs, POS networks, and on-field agents so you can start selling in minutes—not weeks.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <h3>Transparent & Free</h3>
+            <ul class="list">
+              <li>100% free to use, forever.</li>
+              <li>No hidden charges or surprise add-ons.</li>
+              <li>Unlimited contacts & activity history.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Purpose-built Workflows</h3>
+            <ul class="list">
+              <li>Made for insurance calling—from campaigns to renewals.</li>
+              <li>Fast setup. Import leads & start dialing in minutes.</li>
+              <li>Works for single teams, franchises, or nationwide centers.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Productivity First</h3>
+            <ul class="list">
+              <li>Boost agent connect rates and conversion ratios.</li>
+              <li>Automations remove manual tracking & spreadsheets.</li>
+              <li>Live dashboards keep managers informed every hour.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="promotion">
+          <div>
+            <span class="pill">Free offer</span>
+            <h2>Start using the CRM completely free – no credit card required.</h2>
+            <p>
+              Unlimited users for small teams and dedicated onboarding support help you get ROI from day one.
+            </p>
+          </div>
+          <ul class="list">
+            <li>Unlimited users for small teams</li>
+            <li>Free onboarding support</li>
+            <li>Guided migration from spreadsheets</li>
+          </ul>
+          <div>
+            <a class="btn btn-secondary" href="#contact">Get Started Today</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="audience">
+        <h2>Who It’s Built For</h2>
+        <p class="section-subtitle">
+          Every insurance professional who depends on disciplined calling, faster follow-ups, and accurate conversions.
+        </p>
+        <div class="audience-grid">
+          <div class="audience-card">Insurance Agents</div>
+          <div class="audience-card">Telecallers & Call Centers</div>
+          <div class="audience-card">Insurance Brokers</div>
+          <div class="audience-card">POS Agents</div>
+          <div class="audience-card">SME Insurance Agencies</div>
+        </div>
+      </section>
+
+      <section class="section" id="trust">
+        <h2>Trusted, Secure, and Proven</h2>
+        <p class="section-subtitle">
+          Built on a cloud-native infrastructure with layered security controls, compliant data handling, and uptime that teams rely on daily.
+        </p>
+        <div class="trust">
+          <div class="testimonial">
+            <div class="badge">Testimonial</div>
+            <p class="quote">“Our telecalling team cut lead leakages to zero and doubled monthly conversions within three quarters.”</p>
+            <strong>Priya Nair</strong>
+            <p class="muted">Operations Head, SureCover</p>
+          </div>
+          <div class="testimonial">
+            <div class="badge">Security</div>
+            <ul class="list">
+              <li>Data privacy-first with encrypted storage & backups.</li>
+              <li>Cloud-based, always-on access with 99.9% uptime.</li>
+              <li>Role-based access with audit logs and SSO controls.</li>
+            </ul>
+          </div>
+          <div class="testimonial">
+            <div class="badge">Proof</div>
+            <p class="quote">12M+ policy calls handled, 5K+ agents onboarded, and 30+ insurance partners supported every week.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="faq-section">
+          <span class="pill">FAQ</span>
+          <h2>Answers for insurance calling leaders</h2>
+          <p class="section-subtitle">
+            Everything you need to know about onboarding, security, and how InsureCall CRM boosts agent productivity from day one.
+          </p>
+          <div class="faq-list">
+            <details>
+              <summary>Is the CRM really free for unlimited users?</summary>
+              <p class="faq-answer">Yes. InsureCall CRM is 100% free for insurance calling teams, with unlimited users, leads, and call history. Paid plans are optional only if you need bespoke integrations or on-prem data residency.</p>
+            </details>
+            <details>
+              <summary>How quickly can my team go live?</summary>
+              <p class="faq-answer">Most call floors import their lead sheets and start dialing in under 30 minutes. Need help? Our onboarding desk sets up workflows and role-based access within one business day.</p>
+            </details>
+            <details>
+              <summary>Does it integrate with dialers and policy systems?</summary>
+              <p class="faq-answer">We integrate with major auto-dialers, telephony platforms, and insurer policy portals via APIs and webhooks. Custom connectors can be configured for enterprise accounts.</p>
+            </details>
+            <details>
+              <summary>How is data kept secure?</summary>
+              <p class="faq-answer">Data is encrypted at rest and in transit, stored on AWS with daily backups, SSO, audit logs, and role-based controls. We comply with IRDAI guidelines and follow rigorous privacy practices.</p>
+            </details>
+            <details>
+              <summary>Can managers track performance in real time?</summary>
+              <p class="faq-answer">Yes. Dashboards show connect rates, talk time, conversions, and follow-up queues in real time, helping managers coach agents and fix leakages immediately.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="section contact-section" id="contact">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="pill">Talk to Sales</span>
+          <h2>Plan your Insurance Calling CRM rollout</h2>
+          <p class="helper-text">Tell us about your calling desk—we’ll tailor a rollout plan within one business day.</p>
+          <form>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="fullName">Full name</label>
+                <input id="fullName" type="text" placeholder="Priya Sharma" required />
+              </div>
+              <div class="form-field">
+                <label for="company">Company / Agency</label>
+                <input id="company" type="text" placeholder="SureCover Advisors" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="workEmail">Work email</label>
+                <input id="workEmail" type="email" placeholder="priya@surecover.com" required />
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone / WhatsApp</label>
+                <input id="phone" type="tel" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="teamSize">Calling team size</label>
+                <select id="teamSize" required>
+                  <option value="">Select</option>
+                  <option>1-10 agents</option>
+                  <option>11-30 agents</option>
+                  <option>31-75 agents</option>
+                  <option>75+ agents</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="timeline">Go-live timeline</label>
+                <select id="timeline">
+                  <option>As soon as possible</option>
+                  <option>Within 30 days</option>
+                  <option>1-3 months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="goals">Team goals / workflows</label>
+              <textarea id="goals" placeholder="E.g. Renewals desk, outbound upsell, policy reminders"></textarea>
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" />
+              Keep me updated on new calling productivity features.
+            </label>
+            <button type="submit" class="btn btn-primary" style="justify-content:center;">Book a Demo</button>
+            <p class="helper-text">By submitting you agree to receive follow-up emails from InsureCall CRM.</p>
+          </form>
+        </div>
+        <div class="support-card">
+          <span class="pill">Always-on support</span>
+          <h3>Onboarding & success desk</h3>
+          <p class="helper-text">Need answers fast? Choose the channel that fits your workflow.</p>
+          <span class="support-badge">Avg. response 8 min</span>
+          <div>
+            <span class="support-chip">Live Chat</span>
+            <span class="support-chip">Knowledge Hub</span>
+            <span class="support-chip">Status Page</span>
+          </div>
+          <ul class="contact-meta">
+            <li><span>24/7</span>Response in under 2 hours worldwide</li>
+            <li><span>99%</span>Customer satisfaction across tickets</li>
+            <li><span>AWS</span>Data residency & encryption at rest</li>
+          </ul>
+          <ul class="list support-links">
+            <li>Email: support@insurecallcrm.com</li>
+            <li>Priority phone: +1 415 800 4010</li>
+            <li>Live Chat (9am–9pm IST)</li>
+            <li>Dedicated success manager for 20+ seats</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-card">
+          <div class="logo" style="color: #fff;">INSURECALL CRM</div>
+          <p>Purpose-built CRM for insurance calling teams. Secure, fast, and free.</p>
+          <div class="socials">
+            <a href="https://linkedin.com" aria-label="LinkedIn">in</a>
+            <a href="https://twitter.com" aria-label="Twitter">X</a>
+            <a href="https://facebook.com" aria-label="Facebook">f</a>
+            <a href="https://youtube.com" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div>
+          <h3>Product</h3>
+          <ul class="list">
+            <li><a href="#features">Core features</a></li>
+            <li><a href="#why">Why choose us</a></li>
+            <li><a href="#trust">Security & trust</a></li>
+            <li><a href="#audience">Who we serve</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Reach us</h3>
+          <ul class="list">
+            <li>support@insurecallcrm.com</li>
+            <li>sales@insurecallcrm.com</li>
+            <li>+1 415 800 4010</li>
+            <li>9am–9pm IST live helpdesk</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small">© 2025 InsureCall CRM. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
