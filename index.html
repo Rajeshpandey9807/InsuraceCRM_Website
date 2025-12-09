@@ -497,6 +497,52 @@
       font-weight: 600;
     }
 
+    .faq-section {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 40px;
+      padding: 3rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(147, 171, 255, 0.35);
+      margin: 2rem auto 0;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    details {
+      background: rgba(237, 241, 255, 0.9);
+      border-radius: 18px;
+      padding: 1.25rem 1.4rem;
+      border: 1px solid rgba(33, 92, 255, 0.18);
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    details[open] {
+      border-color: var(--primary);
+      box-shadow: 0 25px 45px -35px rgba(18, 55, 166, 0.45);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-answer {
+      margin-top: 0.9rem;
+      color: var(--muted);
+    }
+
     footer {
       background: #050a1f;
       color: #eef2ff;
@@ -839,6 +885,38 @@
           <div class="testimonial">
             <div class="badge">Proof</div>
             <p class="quote">12M+ policy calls handled, 5K+ agents onboarded, and 30+ insurance partners supported every week.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="faq-section">
+          <span class="pill">FAQ</span>
+          <h2>Answers for insurance calling leaders</h2>
+          <p class="section-subtitle">
+            Everything you need to know about onboarding, security, and how InsureCall CRM boosts agent productivity from day one.
+          </p>
+          <div class="faq-list">
+            <details>
+              <summary>Is the CRM really free for unlimited users?</summary>
+              <p class="faq-answer">Yes. InsureCall CRM is 100% free for insurance calling teams, with unlimited users, leads, and call history. Paid plans are optional only if you need bespoke integrations or on-prem data residency.</p>
+            </details>
+            <details>
+              <summary>How quickly can my team go live?</summary>
+              <p class="faq-answer">Most call floors import their lead sheets and start dialing in under 30 minutes. Need help? Our onboarding desk sets up workflows and role-based access within one business day.</p>
+            </details>
+            <details>
+              <summary>Does it integrate with dialers and policy systems?</summary>
+              <p class="faq-answer">We integrate with major auto-dialers, telephony platforms, and insurer policy portals via APIs and webhooks. Custom connectors can be configured for enterprise accounts.</p>
+            </details>
+            <details>
+              <summary>How is data kept secure?</summary>
+              <p class="faq-answer">Data is encrypted at rest and in transit, stored on AWS with daily backups, SSO, audit logs, and role-based controls. We comply with IRDAI guidelines and follow rigorous privacy practices.</p>
+            </details>
+            <details>
+              <summary>Can managers track performance in real time?</summary>
+              <p class="faq-answer">Yes. Dashboards show connect rates, talk time, conversions, and follow-up queues in real time, helping managers coach agents and fix leakages immediately.</p>
+            </details>
           </div>
         </div>
       </section>
