@@ -397,35 +397,115 @@
       right: -120px;
       opacity: 0.5;
     }
-    }
 
     footer .footer-grid {
       width: min(1200px, 92vw);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .footer-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 45px -35px rgba(0, 0, 0, 0.6);
+    }
+
+    .footer-card p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .contact-meta {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      display: grid;
+      gap: 0.75rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .contact-meta li {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .contact-meta li span {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.85rem;
     }
 
     footer form {
       display: grid;
-      gap: 0.8rem;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
     }
 
     footer input,
-    footer textarea {
+    footer textarea,
+    footer select {
       width: 100%;
       padding: 0.85rem 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(5, 10, 31, 0.45);
       color: #fff;
       font-size: 0.95rem;
       resize: none;
     }
 
+    footer textarea {
+      min-height: 120px;
+    }
+
+    .helper-text {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-top: 0.25rem;
+    }
+
     footer .socials {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.8rem;
       margin-top: 1rem;
     }
@@ -436,7 +516,33 @@
       border-radius: 12px;
       display: grid;
       place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .support-links li {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .support-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 0.85rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .support-chip {
+      display: inline-flex;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 0 0.4rem 0.5rem 0;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
     }
 
     footer .small {
@@ -451,6 +557,16 @@
         flex-direction: column;
         align-items: stretch;
       }
+
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .promotion {
+        padding: 2rem;
+      }
+    }
 
     @keyframes float {
       0% {
@@ -468,16 +584,6 @@
     .promotion,
     .testimonial {
       animation: float 8s ease-in-out infinite;
-    }
-
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .promotion {
-        padding: 2rem;
-      }
     }
   </style>
 </head>
@@ -678,30 +784,92 @@
 
     <footer id="contact">
       <div class="footer-grid">
-        <div>
+        <div class="footer-card">
           <div class="logo" style="color: #fff;">INSURECALL CRM</div>
           <p>Purpose-built CRM for insurance calling teams. Secure, fast, and free.</p>
+          <ul class="contact-meta">
+            <li><span>24/7</span>Response in under 2 hours worldwide</li>
+            <li><span>99%</span>Customer satisfaction across tickets</li>
+            <li><span>AWS</span>Data residency & encryption at rest</li>
+          </ul>
           <div class="socials">
             <a href="https://linkedin.com" aria-label="LinkedIn">in</a>
             <a href="https://twitter.com" aria-label="Twitter">X</a>
             <a href="https://facebook.com" aria-label="Facebook">f</a>
+            <a href="https://youtube.com" aria-label="YouTube">▶</a>
           </div>
         </div>
         <div>
           <h3>Contact Sales</h3>
+          <p class="helper-text">Tell us about your calling desk—we’ll tailor a rollout plan within one business day.</p>
           <form>
-            <input type="text" placeholder="Full name" required />
-            <input type="email" placeholder="Work email" required />
-            <textarea rows="4" placeholder="Team size & goals"></textarea>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="fullName">Full name</label>
+                <input id="fullName" type="text" placeholder="Priya Sharma" required />
+              </div>
+              <div class="form-field">
+                <label for="company">Company / Agency</label>
+                <input id="company" type="text" placeholder="SureCover Advisors" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="workEmail">Work email</label>
+                <input id="workEmail" type="email" placeholder="priya@surecover.com" required />
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone / WhatsApp</label>
+                <input id="phone" type="tel" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="teamSize">Calling team size</label>
+                <select id="teamSize" required>
+                  <option value="">Select</option>
+                  <option>1-10 agents</option>
+                  <option>11-30 agents</option>
+                  <option>31-75 agents</option>
+                  <option>75+ agents</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="timeline">Go-live timeline</label>
+                <select id="timeline">
+                  <option>As soon as possible</option>
+                  <option>Within 30 days</option>
+                  <option>1-3 months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="goals">Team goals / workflows</label>
+              <textarea id="goals" placeholder="E.g. Renewals desk, outbound upsell, policy reminders"></textarea>
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" />
+              Keep me updated on new calling productivity features.
+            </label>
             <button type="submit" class="btn btn-primary" style="justify-content:center;">Book a Demo</button>
+            <p class="helper-text">By submitting you agree to receive follow-up emails from InsureCall CRM.</p>
           </form>
         </div>
         <div>
           <h3>Support</h3>
-          <ul class="list">
+          <span class="support-badge">Avg. response 8 min</span>
+          <p class="helper-text">Need answers fast? Choose the channel that fits your workflow.</p>
+          <div>
+            <span class="support-chip">Live Chat</span>
+            <span class="support-chip">Knowledge Hub</span>
+            <span class="support-chip">Status Page</span>
+          </div>
+          <ul class="list support-links">
             <li>Email: support@insurecallcrm.com</li>
-            <li>Help Center</li>
+            <li>Help Center & API docs</li>
             <li>Live Chat (9am–9pm IST)</li>
+            <li>Priority phone: +1 415 800 4010</li>
           </ul>
         </div>
       </div>
